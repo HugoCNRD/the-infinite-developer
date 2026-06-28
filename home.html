@@ -30,6 +30,7 @@ body{
   background: radial-gradient(circle at top, #0b1020, var(--bg));
   color:var(--text);
   overflow-x:hidden;
+  padding-top:80px;
 }
 
 
@@ -184,12 +185,24 @@ textarea{min-height:120px;}
   cursor:pointer;
 }
 
+@media(min-width:769px){
+  body{
+    padding-top:0;
+  }
+}
+
 
 @media (max-width:768px){
 
   .nav{
     flex-direction:column;
     top:10px;
+    left:10px;
+    transform:none;
+  }
+
+  body{
+    padding-top:140px; 
   }
 
   .buttons{
