@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Track Order - The Infinite Developer</title>
+
+<link rel="icon" href="favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#05060a;
+  --card:#0b0f1a;
+  --neon:#00f7ff;
+  --neon2:#7a5cff;
+  --text:#e6f1ff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Orbitron', sans-serif;
+}
+
+body{
+  background: radial-gradient(circle at top, #0b1020, var(--bg));
+  color:var(--text);
+}
+
+
+header{
+  text-align:center;
+  padding:60px 20px 20px;
+}
+
+h1{
+  color:var(--neon);
+  text-shadow:0 0 15px var(--neon);
+}
+
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+}
+
+
+.card{
+  background:var(--card);
+  border:1px solid rgba(0,247,255,0.2);
+  border-radius:15px;
+  padding:20px;
+  transition:0.3s;
+}
+
+.card:hover{
+  box-shadow:0 0 20px var(--neon);
+  transform:scale(1.01);
+}
+
+
+.progress{
+  height:12px;
+  background:#111827;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:10px;
+}
+
+.bar{
+  height:100%;
+  width:60%;
+  background:linear-gradient(90deg,var(--neon),var(--neon2));
+  box-shadow:0 0 10px var(--neon);
+}
+
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+
+.status{
+  text-align:center;
+  padding:20px;
+  color:#b9dfff;
+}
+
+
+@media(max-width:768px){
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+  header{
+    padding-top:100px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Order Tracking Dashboard</h1>
+  <p>Tracking order for your project.</p>
+</header>
+
+<div class="container">
+
+
+  <div class="card">
+    <h2>Project Status</h2>
+    <p>Current development phase: check here what are we doing</p>
+
+    <div class="progress">
+      <div class="bar"></div>
+    </div>
+
+    <p style="margin-top:10px;">Progress: 60%</p>
+  </div>
+
+
+  <div class="grid">
+
+    <div class="card">
+      <h3>Project Details</h3>
+      <p>You will find all the discussed details here</p>
+    </div>
+
+    <div class="card">
+      <h3>Milestones</h3>
+      <p>
+        ✔ Requirement analysis<br>
+        ✔ UI structure<br>
+        ⏳ Backend integration<br>
+        ⏳ Final delivery
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+    <h3>Live changelog</h3>
+    <p>Find changelogs for your order here</p>
+    <p>• Update 1: Project initialized</p>
+    <p>• Update 2: V 1.0 tested internally for realease</p>
+    <p>• Update 3: V 1.1 tested with customer</p>
+    <p>• Update 4: V 1.1.1 released to public</p>
+  </div>
+
+</div>
+
+<div class="status">
+  The Infinite Developer © - Building your website
+</div>
+
+</body>
+</html>
