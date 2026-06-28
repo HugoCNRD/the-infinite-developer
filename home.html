@@ -237,10 +237,10 @@ textarea{min-height:120px;}
   <h1>Make Order</h1>
 
   <form action="https://formsubmit.co/hugobatigne@gmail.com" method="POST">
-    <input name="IFC username" placeholder="Do not include @" required>
+    <input name="IFC username" placeholder="IFC Username - Do not include @" required>
     <input name="company" placeholder="Name of company / VA / VO / other" required>
-    <input name="type" placeholder="Website, Crew Center, Discord bot..." required>
-    <textarea name="description" placeholder="Describe your project in detail" required></textarea>
+    <input name="type" placeholder="Type : Website, Crew Center, Discord bot..." required>
+    <textarea name="description" placeholder="Describe your project in detail here" required></textarea>
 
     <button class="submit" type="submit">Send</button>
   </form>
@@ -252,11 +252,11 @@ textarea{min-height:120px;}
 
   <h1>Projects</h1>
 
-  <a class="card" href="#">
+  <a class="card" href="https://hugocnrd.github.io/infinite-news-station/home.html">
     <img src="project1.jpg">
     <div>
-      <h2>Project One</h2>
-      <p>Futuristic system built for IFC-related workflows.</p>
+      <h2>Project One - The Infinite News Station website</h2>
+      <p>Visit here our first website made for an IFC organization !</p>
     </div>
   </a>
 
@@ -306,15 +306,20 @@ window.onload = type;
 
 
 function track(){
-  const val = document.getElementById("pass").value;
+  const val = document.getElementById("pass").value.trim();
   const msg = document.getElementById("msg");
 
-  if(val.trim()){
-    msg.innerText = "Access granted - redirect system ready (next step)";
+  if(val === "test1234"){
     msg.style.color = "#00f7ff";
+    msg.innerText = "Access granted... redirecting";
+
+    setTimeout(()=>{
+      window.location.href = "https://hugocnrd.github.io/the-infinite-developer/template-track.html";
+    }, 700);
+
   } else {
-    msg.innerText = "Invalid password";
     msg.style.color = "red";
+    msg.innerText = "Wrong password";
   }
 }
 
