@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Infinite Developer</title>
+
+<link rel="icon" href="favicon.ico">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+:root{
+  --bg:#05060a;
+  --card:#0b0f1a;
+  --neon:#00f7ff;
+  --neon2:#7a5cff;
+  --text:#e6f1ff;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Orbitron', sans-serif;
+}
+
+body{
+  background: radial-gradient(circle at top, #0b1020, var(--bg));
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+  
+.nav{
+  position:fixed;
+  top:20px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:15px;
+  z-index:1000;
+}
+
+.nav button{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(0,247,255,0.3);
+  color:var(--text);
+  padding:10px 15px;
+  cursor:pointer;
+  transition:0.3s;
+  border-radius:10px;
+  backdrop-filter: blur(10px);
+}
+
+.nav button:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 15px var(--neon);
+}
+
+
+.section{
+  display:none;
+  min-height:100vh;
+  padding:100px 20px 60px;
+}
+
+.section.active{
+  display:block;
+}
+
+
+#home{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+.logo{
+  width:250px;
+  opacity:0;
+  transform:translateY(60px) scale(0.8);
+  animation:floatIn 2s ease forwards;
+  filter:drop-shadow(0 0 20px var(--neon));
+}
+
+@keyframes floatIn{
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+.subtitle{
+  margin-top:20px;
+  font-size:18px;
+  min-height:40px;
+  color:#b9dfff;
+}
+
+
+.home-buttons{
+  margin-top:40px;
+  display:flex;
+  gap:20px;
+}
+
+.big-btn{
+  padding:15px 20px;
+  border-radius:12px;
+  border:1px solid var(--neon);
+  background:rgba(0,247,255,0.05);
+  color:var(--text);
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.big-btn:hover{
+  transform:scale(1.15);
+  box-shadow:0 0 20px var(--neon2);
+}
+
+
+form{
+  max-width:600px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+input, textarea{
+  padding:12px;
+  border-radius:10px;
+  border:1px solid rgba(0,247,255,0.3);
+  background:#0a0f1c;
+  color:white;
+}
+
+textarea{
+  min-height:120px;
+}
+
+.submit-btn{
+  background:var(--neon);
+  border:none;
+  padding:12px;
+  cursor:pointer;
+  font-weight:bold;
+}
+
+.success{
+  text-align:center;
+  margin-top:20px;
+  color:var(--neon);
+}
+
+
+.project-card{
+  max-width:500px;
+  margin:auto;
+  background:var(--card);
+  border:1px solid rgba(0,247,255,0.2);
+  border-radius:15px;
+  overflow:hidden;
+  transition:0.3s;
+}
+
+.project-card:hover{
+  transform:scale(1.05);
+  box-shadow:0 0 20px var(--neon);
+}
+
+.project-card img{
+  width:100%;
+}
+
+.project-card div{
+  padding:15px;
+}
+
+/* TRACK */
+.track-box{
+  max-width:400px;
+  margin:auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+
+@media (max-width:768px){
+
+  .nav{
+    flex-direction:column;
+    top:10px;
+  }
+
+  .home-buttons{
+    flex-direction:column;
+  }
+
+  .logo{
+    width:180px;
+  }
+
+  .subtitle{
+    font-size:14px;
+  }
+
+  .section{
+    padding-top:140px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<div class="nav">
+  <button onclick="show('home')"><i class="fa fa-home"></i> Home</button>
+  <button onclick="show('order')"><i class="fa fa-cart-plus"></i> Order</button>
+  <button onclick="show('projects')"><i class="fa fa-folder"></i> Projects</button>
+  <button onclick="show('track')"><i class="fa fa-key"></i> Track</button>
+</div>
+
+
+<section id="home" class="section active">
+  <img src="tds.jpg" class="logo" alt="logo">
+
+  <div class="subtitle" id="typing"></div>
+
+  <div class="home-buttons">
+    <button class="big-btn" onclick="show('order')">Make Order</button>
+    <button class="big-btn" onclick="show('projects')">Projects</button>
+    <button class="big-btn" onclick="show('track')">Track Order</button>
+  </div>
+</section>
+
+
+<section id="order" class="section">
+  <h1 style="text-align:center;margin-bottom:20px;">Make an Order</h1>
+
+  <form action="https://formsubmit.co/hugobatigne@gmail.com" method="POST">
+    <input type="text" name="IFC username" placeholder="Do not include @" required>
+    <input type="text" name="company" placeholder="Enter the name of company / VA / VO / other" required>
+    <input type="text" name="project type" placeholder="Website, Crew Center, Discord bot or many more" required>
+    <textarea name="description" placeholder="Please enter as many details as you can to help us understand what are your need" required></textarea>
+
+    <button class="submit-btn" type="submit">Send Order</button>
+
+    <input type="hidden" name="_next" value="">
+
+  </form>
+
+  <div id="successMsg" class="success"></div>
+</section>
+
+
+<section id="projects" class="section">
+  <h1 style="text-align:center;margin-bottom:20px;">Projects</h1>
+
+  <a href="https://hugocnrd.github.io/infinite-news-station/home.html" class="project-card">
+    <img src="project1.jpg" alt="project">
+    <div>
+      <h3>Project One - The Infinite News Station website</h3>
+      <p>Discover our first order, a multifonctional website for the I.N.S.</p>
+    </div>
+  </a>
+</section>
+
+
+<section id="track" class="section">
+  <h1 style="text-align:center;margin-bottom:20px;">Track your order</h1>
+
+  <div class="track-box">
+    <input type="password" id="trackPass" placeholder="Enter your tracking password">
+    <button class="submit-btn" onclick="checkPass()">Access</button>
+    <p id="trackMsg"></p>
+  </div>
+</section>
+
+<script>
+
+
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+
+const text = "The Infinite Developer - Coding for your IFC-related company or VA.";
+let i = 0;
+function type(){
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type, 50);
+  }
+}
+window.onload = type;
+
+
+function checkPass(){
+  const val = document.getElementById("trackPass").value;
+  const msg = document.getElementById("trackMsg");
+
+  if(val.length > 0){
+    msg.innerHTML = "Access granted (system to connect to project page coming soon)";
+    msg.style.color = "#00f7ff";
+  } else {
+    msg.innerHTML = "Invalid password";
+    msg.style.color = "red";
+  }
+}
+
+</script>
+
+</body>
+</html>
