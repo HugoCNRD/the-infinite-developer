@@ -7,10 +7,7 @@
 
 <link rel="icon" href="favicon.ico">
 
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -35,26 +32,25 @@ body{
   overflow-x:hidden;
 }
 
-  
+
 .nav{
   position:fixed;
   top:20px;
   left:50%;
   transform:translateX(-50%);
   display:flex;
-  gap:15px;
-  z-index:1000;
+  gap:10px;
+  z-index:999;
 }
 
 .nav button{
   background:rgba(255,255,255,0.05);
   border:1px solid rgba(0,247,255,0.3);
-  color:var(--text);
-  padding:10px 15px;
+  color:white;
+  padding:10px 14px;
+  border-radius:10px;
   cursor:pointer;
   transition:0.3s;
-  border-radius:10px;
-  backdrop-filter: blur(10px);
 }
 
 .nav button:hover{
@@ -62,77 +58,70 @@ body{
   box-shadow:0 0 15px var(--neon);
 }
 
-
-.section{
+  
+.page{
   display:none;
   min-height:100vh;
-  padding:100px 20px 60px;
+  padding:120px 20px 60px;
 }
 
-.section.active{
-  display:block;
-}
-
-
-#home{
+.page.active{
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  text-align:center;
 }
 
+
 .logo{
-  width:250px;
-  opacity:0;
-  transform:translateY(60px) scale(0.8);
+  width:260px;
   animation:floatIn 2s ease forwards;
-  filter:drop-shadow(0 0 20px var(--neon));
+  opacity:0;
+  transform:translateY(50px);
+  filter:drop-shadow(0 0 25px var(--neon));
 }
 
 @keyframes floatIn{
-  to{
-    opacity:1;
-    transform:translateY(0) scale(1);
-  }
+  to{opacity:1; transform:translateY(0);}
 }
 
 .subtitle{
   margin-top:20px;
   font-size:18px;
-  min-height:40px;
+  text-align:center;
+  max-width:700px;
   color:#b9dfff;
+  min-height:40px;
 }
 
-
-.home-buttons{
+.buttons{
   margin-top:40px;
   display:flex;
-  gap:20px;
+  gap:15px;
 }
 
-.big-btn{
-  padding:15px 20px;
-  border-radius:12px;
+.bigbtn{
+  padding:15px 18px;
   border:1px solid var(--neon);
   background:rgba(0,247,255,0.05);
-  color:var(--text);
+  color:white;
+  border-radius:12px;
   cursor:pointer;
   transition:0.3s;
 }
 
-.big-btn:hover{
+.bigbtn:hover{
   transform:scale(1.15);
   box-shadow:0 0 20px var(--neon2);
 }
 
 
 form{
+  width:100%;
   max-width:600px;
-  margin:auto;
   display:flex;
   flex-direction:column;
-  gap:15px;
+  gap:12px;
 }
 
 input, textarea{
@@ -143,55 +132,56 @@ input, textarea{
   color:white;
 }
 
-textarea{
-  min-height:120px;
-}
+textarea{min-height:120px;}
 
-.submit-btn{
+.submit{
   background:var(--neon);
   border:none;
   padding:12px;
   cursor:pointer;
   font-weight:bold;
+  border-radius:10px;
 }
 
-.success{
-  text-align:center;
-  margin-top:20px;
-  color:var(--neon);
-}
-
-
-.project-card{
+.card{
+  width:90%;
   max-width:500px;
-  margin:auto;
   background:var(--card);
-  border:1px solid rgba(0,247,255,0.2);
   border-radius:15px;
   overflow:hidden;
+  border:1px solid rgba(0,247,255,0.2);
   transition:0.3s;
+  text-decoration:none;
+  color:white;
 }
 
-.project-card:hover{
+.card:hover{
   transform:scale(1.05);
   box-shadow:0 0 20px var(--neon);
 }
 
-.project-card img{
-  width:100%;
-}
+.card img{width:100%;}
+.card div{padding:15px;}
 
-.project-card div{
-  padding:15px;
-}
 
-/* TRACK */
-.track-box{
-  max-width:400px;
-  margin:auto;
+.track{
   display:flex;
   flex-direction:column;
   gap:10px;
+  width:300px;
+}
+
+.track input{
+  padding:12px;
+  border-radius:10px;
+}
+
+.track button{
+  padding:12px;
+  border:none;
+  background:var(--neon);
+  border-radius:10px;
+  cursor:pointer;
 }
 
 
@@ -202,23 +192,19 @@ textarea{
     top:10px;
   }
 
-  .home-buttons{
+  .buttons{
     flex-direction:column;
+  }
+
+  .page.active{
+    justify-content:flex-start;
+    padding-top:140px;
   }
 
   .logo{
     width:180px;
   }
-
-  .subtitle{
-    font-size:14px;
-  }
-
-  .section{
-    padding-top:140px;
-  }
 }
-
 </style>
 </head>
 
@@ -226,98 +212,108 @@ textarea{
 
 
 <div class="nav">
-  <button onclick="show('home')"><i class="fa fa-home"></i> Home</button>
-  <button onclick="show('order')"><i class="fa fa-cart-plus"></i> Order</button>
-  <button onclick="show('projects')"><i class="fa fa-folder"></i> Projects</button>
-  <button onclick="show('track')"><i class="fa fa-key"></i> Track</button>
+  <button onclick="go('home')">Home</button>
+  <button onclick="go('order')">Order</button>
+  <button onclick="go('projects')">Projects</button>
+  <button onclick="go('track')">Track</button>
 </div>
 
+<div id="home" class="page active">
 
-<section id="home" class="section active">
-  <img src="tds.jpg" class="logo" alt="logo">
+  <img src="tds.jpg" class="logo">
 
   <div class="subtitle" id="typing"></div>
 
-  <div class="home-buttons">
-    <button class="big-btn" onclick="show('order')">Make Order</button>
-    <button class="big-btn" onclick="show('projects')">Projects</button>
-    <button class="big-btn" onclick="show('track')">Track Order</button>
+  <div class="buttons">
+    <button class="bigbtn" onclick="go('order')">Make Order</button>
+    <button class="bigbtn" onclick="go('projects')">Projects</button>
+    <button class="bigbtn" onclick="go('track')">Track Order</button>
   </div>
-</section>
 
+</div>
 
-<section id="order" class="section">
-  <h1 style="text-align:center;margin-bottom:20px;">Make an Order</h1>
+<div id="order" class="page">
+
+  <h1>Make Order</h1>
 
   <form action="https://formsubmit.co/hugobatigne@gmail.com" method="POST">
-    <input type="text" name="IFC username" placeholder="Do not include @" required>
-    <input type="text" name="company" placeholder="Enter the name of company / VA / VO / other" required>
-    <input type="text" name="project type" placeholder="Website, Crew Center, Discord bot or many more" required>
-    <textarea name="description" placeholder="Please enter as many details as you can to help us understand what are your need" required></textarea>
+    <input name="IFC username" placeholder="Do not include @" required>
+    <input name="company" placeholder="Name of company / VA / VO / other" required>
+    <input name="type" placeholder="Website, Crew Center, Discord bot..." required>
+    <textarea name="description" placeholder="Describe your project in detail" required></textarea>
 
-    <button class="submit-btn" type="submit">Send Order</button>
-
-    <input type="hidden" name="_next" value="">
-
+    <button class="submit" type="submit">Send</button>
   </form>
 
-  <div id="successMsg" class="success"></div>
-</section>
+</div>
 
 
-<section id="projects" class="section">
-  <h1 style="text-align:center;margin-bottom:20px;">Projects</h1>
+<div id="projects" class="page">
 
-  <a href="https://hugocnrd.github.io/infinite-news-station/home.html" class="project-card">
-    <img src="project1.jpg" alt="project">
+  <h1>Projects</h1>
+
+  <a class="card" href="#">
+    <img src="project1.jpg">
     <div>
-      <h3>Project One - The Infinite News Station website</h3>
-      <p>Discover our first order, a multifonctional website for the I.N.S.</p>
+      <h2>Project One</h2>
+      <p>Futuristic system built for IFC-related workflows.</p>
     </div>
   </a>
-</section>
+
+</div>
 
 
-<section id="track" class="section">
-  <h1 style="text-align:center;margin-bottom:20px;">Track your order</h1>
+<div id="track" class="page">
 
-  <div class="track-box">
-    <input type="password" id="trackPass" placeholder="Enter your tracking password">
-    <button class="submit-btn" onclick="checkPass()">Access</button>
-    <p id="trackMsg"></p>
+  <h1>Track Order</h1>
+
+  <div class="track">
+    <input id="pass" type="password" placeholder="Enter password">
+    <button onclick="track()">Access</button>
+    <p id="msg"></p>
   </div>
-</section>
+
+</div>
 
 <script>
 
 
-function show(id){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+function go(id){
+
+  document.querySelectorAll('.page').forEach(p=>{
+    p.classList.remove('active');
+  });
+
   document.getElementById(id).classList.add('active');
+
 }
+
 
 
 const text = "The Infinite Developer - Coding for your IFC-related company or VA.";
 let i = 0;
+
 function type(){
   if(i < text.length){
-    document.getElementById("typing").innerHTML += text.charAt(i);
+    document.getElementById("typing").innerHTML += text[i];
     i++;
-    setTimeout(type, 50);
+    setTimeout(type, 40);
   }
 }
+
 window.onload = type;
 
 
-function checkPass(){
-  const val = document.getElementById("trackPass").value;
-  const msg = document.getElementById("trackMsg");
 
-  if(val.length > 0){
-    msg.innerHTML = "Access granted (system to connect to project page coming soon)";
+function track(){
+  const val = document.getElementById("pass").value;
+  const msg = document.getElementById("msg");
+
+  if(val.trim()){
+    msg.innerText = "Access granted - redirect system ready (next step)";
     msg.style.color = "#00f7ff";
   } else {
-    msg.innerHTML = "Invalid password";
+    msg.innerText = "Invalid password";
     msg.style.color = "red";
   }
 }
